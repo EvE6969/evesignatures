@@ -1,0 +1,8 @@
+*.pyc
+*.ser
+*.bak
+*~
+bower_components
+node_modules
+build
+testdata.txt

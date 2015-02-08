@@ -1,0 +1,435 @@
+
+#pageSignature .nav {
+border-bottom: 1px solid #999;
+padding-bottom: 1em;
+}
+
+#pageSignatureOverview .row:first-child {
+margin: 1em 0 1em 0;
+}
+
+#m_signatures_history ul li {
+padding: .1em .25em .1em .25em;
+}
+
+#m_signatures_history {
+border-left: 1px solid #666;
+padding-left: .5em;
+}
+
+#m_signatures_history ul li .eve_timestamp {
+font-size: 75%;
+}
+
+.eve_timestamp {
+color: #999;
+}
+
+.eve_signatures_add_signatures {
+	display:inline-block;
+	width: 30em;
+	vertical-align: top;
+	margin-right: .5em;
+}
+
+.eve_signatures_add_list_cnt {
+	overflow: auto;
+	display: block;
+	margin-right: .5em;
+	color: #ccc;
+}
+
+.eve_signatures_add_list_cnt div {
+	display: table-row;
+}
+
+.eve_signatures_add_list_cnt div * {
+	display: table-cell;
+	padding: 0 .25em 0 .25em;
+}
+
+.eve_signatures_add_list_cnt .tooltip {
+	min-width: 40em;
+	padding: .1em;
+}
+
+.eve_signatures_add_list_cnt .tooltip-inner {
+	padding: .25em .5em .25em 1em;
+}
+
+.eve_signatures_add_list_cnt .tooltip * {
+	display: block !important;
+text-align: left;
+}
+
+.eve_signatures_add_cnt_input {
+	display:inline-block;
+	vertical-align: top;
+	border-left: 1px solid #999;
+	padding-left: 1em;
+	width: 31em;
+}
+
+.eve_signature_add_howitworks {
+	margin-top: 3em;
+}
+
+.eve_signature_add_howitworks_title {
+	text-decoration: underline;
+	margin-top: 1em;
+	margin-bottom: .25em;
+}
+
+.eve_signatures_add_cnt_input .eve_signature_add_input_top {
+	margin-bottom: 1em;
+	height: 2em;
+}
+
+.eve_signatures_add_cnt_input .eve_signature_add_input_txt {
+	width: 30em;
+	height: 20em;
+}
+
+.eve_signature_add_input_bottom .eve_signature_add_input_clearinput_btn {
+	float: right;
+}
+
+.eve_signatures_add_title {
+	font-size:123.1%;
+	font-weight: bold;
+	margin-bottom: .5em;
+}
+
+.eve_signatures_add_list_notinresult {
+	color: #999;
+}
+
+.eve_signatures_add_list_inresult {
+	color: #fff;
+}
+
+.eve_signatures_add_list_refined {
+	color: #ff6;
+}
+
+.eve_signatures_overview_list {
+	display: block;
+}
+
+.eve_signatures_overview_nodata,
+.eve_signatures_overview_expand {
+	display: inline-block;
+	clear: both;
+}
+
+#m_signatures_overview .eve_expand_spacer {
+	width: 16px;
+	margin-right: .5em;
+	display: inline-block;
+}
+
+.eve_signature_overview_list_entry {
+	white-space: nowrap;
+}
+
+.eve_signature_overview_list_entry img,
+.eve_signature_overview_list_entry .eve_expand_spacer,
+.eve_signature_overview_list_entry .eve_signatures_overview_expand  {
+display: inline-block;
+}
+
+.eve_signatures_overview_expand .eve_distance,
+.eve_signatures_whlist_entry .eve_distance,
+.eve_signatures_overview_nodata .eve_distance {
+	margin-left: 1em;
+	width: 6em;
+	display: inline-block;
+}
+
+.eve_signatures_overview_expand .eve_system,
+.eve_signatures_overview_nodata .eve_system,
+.eve_signatures_whlist_entry .eve_system,
+.eve_signatures_whlist_entry .eve_signatures_whlist_entry_sig {
+	padding-left: .25em;
+	width: 5em;
+	display: inline-block;
+}
+
+.eve_signatures_overview_expand .eve_secstatus,
+.eve_signatures_overview_nodata .eve_secstatus,
+.eve_signatures_whlist_entry .eve_secstatus {
+	width: 3em;
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.eve_signatures_overview_expand .eve_stats,
+.eve_signatures_overview_nodata .eve_stats {
+	width: 1.5em;
+	display: inline-block;
+	margin-right: 1em;
+}
+
+#m_signatures_overview img.eve_scanning_expand_icon,
+#m_signatures_whlist img.eve_scanning_expand_icon {
+	vertical-align:bottom;
+	margin-right: .5em;
+	cursor:pointer;
+}
+
+.eve_signatures_overview_nodata .eve_system_nodata {
+	margin-left: 1em;
+}
+
+#pageSignatureOverview .label {
+	margin-left: .5em;
+}
+
+#m_signatures_overview .eve_timestamp {
+	margin-right: .5em;
+}
+
+.label-anomaly {
+	background: #c96;
+}
+
+.label-complex {
+	background: #f33;
+}
+
+.label-unknown {
+	background: #666;
+}
+
+.label-wh {
+	background: #c6f;
+}
+
+.label-gravimetric {
+	background: #f69;
+}
+
+.label-ladar {
+	background: #c93;
+}
+
+.label-radar {
+	background: #993;
+}
+
+.label-magnetometric {
+	background: #399;
+}
+
+.label-clear {
+	background: #393;
+}
+
+.eve_signatures_overview_details_cnt table {
+	margin: .5em;
+}
+
+.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_anomaly {
+	color: #c96;
+}
+
+.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_dedcomplex,
+.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_unratedcomplex {
+	color: #f33;
+}
+
+.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_unknown {
+	color: #666;
+}
+
+.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_wormhole {
+	color: #c6f;
+}
+
+.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_gravimetric {
+	color: #f69;
+}
+
+.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_ladar,
+.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_ladarnebula,
+.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_ladarfacility {
+	color: #c93;
+}
+
+.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_radar {
+	color: #993;
+}
+
+.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_magnetometric {
+	color: #399;
+}
+
+.eve_signatures_overview_details_cnt table tr td {
+	padding: 0 1em 0 0;
+}
+
+.eve_signatures_overview_details_cnt table tr td a:hover {
+	background: #333;
+}
+
+.eve_signatures_overview_details_cnt table tr td a.eve_signatures_overview_details_remove {
+	color: #f33;
+}
+
+.eve_signatures_overview_details_cnt table tr td a.eve_signatures_overview_details_remove:hover {
+	background: #900;
+}
+
+.eve_signature_add_input_locking {
+	clear:both;
+	padding-top: 1em;
+}
+
+.eve_signatures_overview_list_time {
+	padding-left: 1em;
+}
+
+.eve_signatures_overview_list_time .eve_timestamp {
+	padding-left: .5em;
+}
+
+.eve_signature_overview_input_top {
+	padding-top: .5em;
+margin-bottom: .5em;
+}
+
+
+.eve_signatures_whdialog_top {
+	margin-bottom: 1em;
+}
+
+.eve_signatures_whdialog_in_whtype {
+	width: 18em;
+}
+
+.eve_signatures_whdialog_in_whsystem {
+	width: 18em;
+}
+
+.eve_signatures_whdialog_whsystem {
+	margin-left: 1em;
+}
+
+.eve_signatures_whdialog_comment,
+.eve_signatures_whdialog_details {
+	display: block;
+}
+
+.eve_signatures_whdialog_in_details,
+.eve_signatures_whdialog_in_comment {
+	width: 100%;
+	height: 8em;
+}
+
+.eve_signatures_whdialog_comment {
+	margin-top: 1em;
+}
+
+.eve_signatures_whdialog_comment_help {
+	margin-top: .25em;
+	color: white;
+}
+
+.eve_signatures_overview_details_system,
+.eve_signatures_overview_details_timestamp,
+.eve_signatures_overview_details_type {
+	white-space: nowrap;
+}
+
+a.eve_signatures_overview_details_show {
+		margin-left: .5em;
+}
+
+#m_signatures_overview a,
+.eve_signatures_add_editwh {
+	text-decoration: underline;
+	cursor:pointer;
+}
+
+.eve_signatures_add_list_details {
+	text-decoration: underline;
+}
+
+.eve_signatures_history_entry .eve_signatures_history_date {
+	color: #999;
+}
+
+.eve_signatures_history_entry {
+	margin-bottom: .5em;
+}
+
+
+#m_signatures_whlist {
+overflow: auto;
+}
+
+.eve_signatures_whlist_entry {
+padding: .25em .25em 0 .25em;
+}
+
+.eve_signatures_whlist_entry .eve_signatures_overview_list_destinations {
+padding-left: .5em;
+}
+
+.eve_signatures_whlist_details {
+padding: .5em;
+}
+
+.eve_signatures_whlist_details_entry .eve_signatures_whlist_entry_whsystem_head,
+.eve_signatures_whlist_details_entry .eve_createdby {
+display: inline-block;
+margin-left: 1em;
+}
+
+.eve_signatures_whlist_details_entry .eve_timestamp {
+display: inline-block;
+margin-left: .5em;
+}
+
+.eve_signatures_whlist_details_entry .eve_signatures_whlist_entry_details_head,
+.eve_signatures_whlist_details_entry .eve_signatures_whlist_entry_comment_head {
+display: block;
+margin: 1em;
+	background: #333;
+	padding: 1em;
+	white-space: pre-wrap
+}
+
+.eve_signatures_whlist_noresults {
+	margin-top: 2em;
+	text-align: center;
+	color: #999;
+}
+
+.eve_signature_whlist_input_top  {
+	padding-top: .5em;
+}
+
+.eve_signature_whlist_entry_whtype {
+	margin-top: 1em;
+}
+
+.eve_signature_whlist_entry_whtype_maxjumpmass {
+	margin-top: .5em;
+}
+
+.eve_signature_whlist_entry_whtype_maxjumpmass,
+.eve_signature_whlist_entry_whtype_massregen,
+.eve_signature_whlist_entry_whtype_massregen,
+.eve_signature_whlist_entry_whtype_maxtime {
+	margin-left: 1em;
+	display: block;
+}
+
+.eve_signatures_whlist_entry {
+	padding: .25em .5em .25em .5em;
+}
+
+.eve_signatures_whlist_entry:nth-child(even) {
+	background: #222;
+}

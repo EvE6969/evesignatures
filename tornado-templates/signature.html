@@ -1,0 +1,96 @@
+
+<div id="pageSignature" style="display:none;" class="container">
+
+	<div>
+		<ul class="nav nav-pills" role="tablist">
+		  <li class="active"><a href="javascript:void(0);" id="eve_signatures_tab_overview">Overview</a></li>
+		  <li><a href="javascript:void(0);" id="eve_signatures_tab_add">Add</a></li>
+		  <li><a href="javascript:void(0);" id="eve_signatures_tab_wormholes"><span class="badge pull-right">0</span>Wormholes</a></li>
+		</ul>
+	</div>
+
+	<div id="pageSignatureOverview">
+
+		<div class="row">
+			<div class="col-md-12">
+				<!-- region selection -->
+				<div class="form-group">
+					<label for="signature_in_acregion" class="col-sm-1 col-xs-2 control-label">Region</label>
+					<div class="col-sm-2 col-xs-6">
+						<input type="text" class="form-control input-sm" id="signature_in_acregion"/>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<!-- signatures overview list -->
+			<div id="m_signatures_overview" class="col-md-9"></div>
+
+			<!-- edit history -->
+			<div id="m_signatures_history" class="col-md-3 visible-lg"></div>
+
+		</div>
+
+	</div>
+
+	<div id="pageSignatureAdd" style="display:none;">
+
+		<h4>Enter Signatures</h4>
+
+		<div id="m_signatures_add">
+
+			<!-- Current system name -->
+			<div class="eve_signatures_add_title"></div>
+
+			<!-- List of all signature results in system -->
+			<div class="eve_signatures_add_signatures"></div>
+
+			<!-- Input container right side -->
+			<div class="eve_signatures_add_cnt_input">
+
+				<!-- Button "system clear" -->
+				<div class="eve_signature_add_input_top">
+					<button type="button" class="eve_signature_add_input_sysclear_btn btn btn-info">System Clear</button>
+				</div>
+
+				<!-- Text input area -->
+				<div class="form-group">
+					<textarea class="eve_signature_add_input_txt form-control" placeholder="Copy and paste scan results into this text input field"></textarea>
+				</div>
+
+				<!-- Button "clear input" -->
+				<div class="eve_signature_add_input_bottom">
+					<span class="eve_signature_add_input_msg"></span>
+					<button type="button" class="eve_signature_add_input_clearinput_btn btn btn-default">Clear Input</button>
+				</div>
+
+				<!-- Help text -->
+				<div class="eve_signature_add_howitworks">
+					<div class="eve_signature_add_howitworks_title">How it works</div>
+
+						To add signatures to the tool, simply copy and paste the results from your probes (not d-scan!) by
+						clicking into your result window, hit ctrl-a and ctrl-c (or ctrl click individual results) and paste the content into the input field above
+						with ctrl-v. The tool should then automatically recognize and save results.
+						This tool can be used to share results on wormholes or signatures that you're not interested in with alliance mates,
+						either for them to pick them up or at least preventing others from probing the same signatures over and over again.
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div id="pageSignatureWhlist" style="display:none;">
+
+		<div class="eve_border_pane">
+			<div id="m_signatures_whlist"/>
+		</div>
+
+	</div>
+
+
+</div>
+
+<div id="m_signatures_whdialog"/>

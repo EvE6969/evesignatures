@@ -1,0 +1,39 @@
+{
+  "name": "evesignatures",
+  "version": "0.0.0",
+  "authors": [
+    "Stefan Podkowinski <github@midnightdrift.com>"
+  ],
+  "description": "Signature scanning colaboration tool for IGB toolbox",
+  "moduleType": [
+    "amd", "igbtoolbox"
+  ],
+  "keywords": [
+    "eveonline",
+    "igbtoolbox"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "server/**/*.pyc",
+    "server/**/__pycache__",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "momentjs": "~2.9.0",
+    "jquery": "~1.11.0",
+    "react": "~0.12.2",
+    "underscore": "~1.6.0",
+    "eveflightjs": "git://github.com/igbtoolbox/eveflightjs.git",
+    "eveportal": "git://github.com/igbtoolbox/eveportal.git",
+    "eveauthnsimple": "git://github.com/igbtoolbox/eveauthnsimple.git",
+    "eveautocomplete": "git://github.com/igbtoolbox/eveautocomplete.git",
+    "evespatial": "git://github.com/igbtoolbox/evespatial.git",
+    "evexmlapi": "git://github.com/igbtoolbox/evexmlapi.git",
+    "evemessagebus": "git://github.com/igbtoolbox/evemessagebus.git",
+    "evesde": "git://github.com/igbtoolbox/evesde.git"
+  }
+}
