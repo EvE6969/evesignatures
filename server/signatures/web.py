@@ -5,6 +5,7 @@ from . import jobs
 
 def routes():
         return [
+            (r"/static/signatures/(.*)", tornado.web.StaticFileHandler, {"path": os.path.join(os.path.dirname(__file__), '..', '..', 'web')}),
             (signatures.URI_SIGNATURES_HISTORY, signatures.SignaturesHistoryAjax),
             (signatures.URI_SIGNATURES, signatures.SignaturesAjax),
             (signatures.URI_SYSTEM_AUTOCOMPLETE, signatures.WhSystemAutoCompleteAjax),
