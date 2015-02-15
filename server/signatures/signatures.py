@@ -155,9 +155,6 @@ class SignaturesAjax(evecommon.AbstractPage):
 
             MessageBusConnection.broadcast({'module': 'signatures', 'event': 'signature_history_added', 'data': msg}, self._pilot.allianceId)
 
-            self.get()
-            return
-
         elif action == 'remove':
 
             q = { 'allianceId': self._pilot.allianceId, 'signature': obj['signature'], 'systemId': obj['systemId'], 'deleted': False }
