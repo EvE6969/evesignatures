@@ -95,7 +95,7 @@ text-align: left;
 		.eve_signature_add_howitworks, .eve_signature_add_input_bottom {
 			display: none;
 		}
-		
+
 		.eve_signatures_add_cnt_input {
 			margin-top: 2em;
 		}
@@ -263,47 +263,16 @@ display: inline-block;
 	background: #399;
 }
 
+.label-ore {
+	background: #c39;
+}
+
 .label-clear {
 	background: #393;
 }
 
 .eve_signatures_overview_details_cnt table {
 	margin: .5em;
-}
-
-.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_anomaly {
-	color: #c96;
-}
-
-.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_dedcomplex,
-.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_unratedcomplex {
-	color: #f33;
-}
-
-.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_unknown {
-	color: #666;
-}
-
-.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_wormhole {
-	color: #c6f;
-}
-
-.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_gravimetric {
-	color: #f69;
-}
-
-.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_ladar,
-.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_ladarnebula,
-.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_ladarfacility {
-	color: #c93;
-}
-
-.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_radar {
-	color: #993;
-}
-
-.eve_signatures_overview_details_cnt table tr td.eve_signatures_overview_details_type_magnetometric {
-	color: #399;
 }
 
 .eve_signatures_overview_details_cnt table tr td {

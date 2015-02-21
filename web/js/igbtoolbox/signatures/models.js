@@ -41,10 +41,11 @@ define(
 			/** @type {function():number} */ this.magnetometric = this._countSignatureClassification(this.signatures, ['magnetometric']);
 			/** @type {function():number} */ this.systemclear = this._countSignatureClassification(this.signatures, ['systemclear']);
 			/** @type {function():number} */ this.unknown = this._countSignatureClassification(this.signatures, ['unknown']);
+			/** @type {function():number} */ this.ore = this._countSignatureClassification(this.signatures, ['ore']);
 
 			/** @type {function():boolean} */ this.noReportedSignatures = this.anomalies == 0 && this.complexes == 0
 						&& this.wormholes == 0 && this.gravimetric == 0 && this.radar == 0 && this.ladar == 0 && this.magnetometric == 0
-						&& this.unknown == 0;
+						&& this.unknown == 0 && this.ore == 0;
 			/** @type {function():boolean} */ this.isSystemClear = this.systemclear && this.noReportedSignatures;
 			/** @type {function():boolean} */ this.hasData = this.systemclear || !this.noReportedSignatures;
 			/** @type {function():boolean} */ this.noData = !this.hasData;
@@ -177,10 +178,18 @@ define(
 
 			} else if(this.scanGroup == 'Cosmic Anomaly') {
 
-				this._parseAnomaly();
-				this.classification = 'anomaly';
-				this.sortPrimary = 0;
-				this.sortSecondary = this._getAnomalyDifficultyValue() + (this._getAnomalyDifficultyMinorValue() / 10.);
+				// ore belts
+				var re = /Belt$/;
+				if(this.type && re.test(this.type)) {
+					this.classification = 'ore';
+					this.sortPrimary = 1;
+					this.sortSecondary = 0;
+				} else {
+					this._parseAnomaly();
+					this.classification = 'anomaly';
+					this.sortPrimary = 0;
+					this.sortSecondary = this._getAnomalyDifficultyValue() + (this._getAnomalyDifficultyMinorValue() / 10.);
+				}
 
 			} else if(this.scanGroup == 'Cosmic Signature') {
 
@@ -271,6 +280,7 @@ define(
 						}
 					}
 				}
+
 			}
 		};
 
@@ -451,7 +461,10 @@ define(
 						return  "Leading to " + ld;
 					}
 				}
+			} else if(this.classification == 'ore') {
+				return "Ore Site (Ore/Ice Miner)";
 			}
+
 		};
 
 		models.Signature.prototype._parseAnomaly = function() {

@@ -43,7 +43,7 @@ define(
 
         var systemNoData;
         var systemProbedDate;
-        var anomalies, complexes, wormholes, gravimetric, ladar, radar, magnetometric, unknown, clear;
+        var anomalies, complexes, wormholes, gravimetric, ladar, radar, magnetometric, ore, unknown, clear;
         var sigList;
         if(system.noData) {
           systemNoData = <span className="eve_system_nodata">no data</span>;
@@ -76,6 +76,9 @@ define(
           }
           if(system.magnetometric > 0) {
             magnetometric = <span className="eve_signatures_overview_list_magnetometric label label-magnetometric" >{system.magnetometric} Magnetometric</span>
+          }
+          if(system.ore > 0) {
+            ore = <span className="eve_signatures_overview_list_ore label label-ore" >{system.ore} Ore</span>
           }
           if(system.unknown > 0) {
             unknown = <span className="eve_signatures_overview_list_unknown label label-unknown" >{system.unknown} Unknown</span>
@@ -116,6 +119,7 @@ define(
               {anomalies}
               {complexes}
               {wormholes}
+              {ore}
               {gravimetric}
               {ladar}
               {radar}
