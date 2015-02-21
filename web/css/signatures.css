@@ -67,7 +67,7 @@ text-align: left;
 	vertical-align: top;
 	border-left: 1px solid #999;
 	padding-left: 1em;
-	width: 31em;
+	width: 25em;
 }
 
 .eve_signature_add_howitworks {
@@ -85,10 +85,52 @@ text-align: left;
 	height: 2em;
 }
 
-.eve_signatures_add_cnt_input .eve_signature_add_input_txt {
-	width: 30em;
-	height: 20em;
+@media only screen and (min-width : 320px){
+
+		.eve_signatures_add_cnt_input .eve_signature_add_input_txt {
+			width: 15em;
+			height: 5em;
+		}
+
+		.eve_signature_add_howitworks, .eve_signature_add_input_bottom {
+			display: none;
+		}
+		
+		.eve_signatures_add_cnt_input {
+			margin-top: 2em;
+		}
 }
+
+@media only screen and (min-width : 675px){
+
+	.eve_signatures_add_cnt_input .eve_signature_add_input_txt {
+		height: 10em;
+	}
+
+	.eve_signatures_add_cnt_input {
+		margin-top: 0em;
+	}
+
+}
+
+@media only screen and (min-width : 768px){
+
+		.eve_signatures_add_cnt_input .eve_signature_add_input_txt {
+			width: 20em;
+			height: 15em;
+		}
+
+		.eve_signature_add_howitworks, .eve_signature_add_input_bottom {
+			display: initial;
+		}
+
+		.eve_signatures_add_cnt_input {
+			margin-top: 0em;
+		}
+
+}
+
+
 
 .eve_signature_add_input_bottom .eve_signature_add_input_clearinput_btn {
 	float: right;
