@@ -14,6 +14,7 @@ _DEFAULT_EXPIRE_DAYS = 1
 _WH_EXPIRES_NEG_TOLERANCE = 0 #60*3
 _WH_DEFAULT_EXPIRE_HOURS = 24 - _WH_EXPIRES_NEG_TOLERANCE / 60
 _RE_WH_SYSTEM = re.compile('^J[0-9]+$')
+_RE_WH_LIFETIME = re.compile(r'^([0-9]{1,2}) hrs$')
 
 class SignaturesAjax(evecommon.AbstractPage):
 
@@ -206,12 +207,20 @@ class SignaturesAjax(evecommon.AbstractPage):
                     wh['whSystem'] = {'_id': system}
 
             if obj.get('type'):
-                whtype = universe.getWormholeByType(obj.get('type'))
+                wt = obj['type']
+                whtype = yield self._eve_db.WormholeTypes.find_one({'_id': wt})
                 if not whtype:
-                    logging.error('Could not get whtype: %s' % obj.get('type'))
+                    if wt != 'K162': logging.warning('Could not get whtype: %s' % wt)
                 else:
                     wh['type'] = whtype
-                    sig['expires'] = sig['createdAt'] + datetime.timedelta(minutes=whtype['maxTime']) - datetime.timedelta(minutes=_WH_EXPIRES_NEG_TOLERANCE)
+                    # adjust signature expire time based on wh lifetime
+                    m = _RE_WH_LIFETIME.search(whtype['lifetime'])
+                    if m == None:
+                        logging.warning("Could not parse wh lifetime: %s", whtype['lifetime'])
+                    else:
+                        hrs = int(m.group(1))
+                        sig['expires'] = sig['createdAt'] + datetime.timedelta(minutes=hrs*60) - datetime.timedelta(minutes=_WH_EXPIRES_NEG_TOLERANCE)
+                        logging.debug("wh expires at: %s", sig['expires'])
 
             sig['lastUpdate'] = datetime.datetime.utcnow()
             yield self._domain_db.Signature.update(q, sig, upsert=False)
