@@ -53,7 +53,7 @@ define(
         return (
           <div className="eve_signatures_whlist_entry">
             <img onClick={igbUtil.toggleShowNodes} src="/static/common/im/icon_expand.png"
-              width="16" height="16" title="Expand" className="eve_scanning_expand_icon"/>
+              width="16" height="16" className="eve_scanning_expand_icon"/>
               <span className="eve_system" data-system={systemId}>{whSystem.system}</span>
               <span className="eve_distance eve_distance_brackets" data-system={systemId}></span>
               <span className={cssClassSec} title="Security status">{whSystem.sec}</span>

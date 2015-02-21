@@ -27,7 +27,7 @@ define(
           cssEntryBase = 'eve_signatures_overview_nodata';
         } else {
           imgExpand = <img onClick={igbUtil.toggleShowNodes} className="eve_scanning_expand_icon eve_scanning_expand_icon_{systemId}"
-          src="/static/common/im/icon_expand.png" width="16" height="16" title="Expand"/>
+          src="/static/common/im/icon_expand.png" width="16" height="16"/>
           cssEntryBase = 'eve_signatures_overview_expand';
         }
 
