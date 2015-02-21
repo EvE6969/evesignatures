@@ -2,6 +2,13 @@ import os
 import tornado
 from . import signatures
 from . import jobs
+from . import importcsv
+
+
+def onStartup():
+    importcsv.parseSystems()
+    importcsv.parseWhs()
+
 
 def routes():
         return [
