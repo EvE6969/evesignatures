@@ -44,7 +44,8 @@ define(
             details = wh['details'];
           }
           if(wh['type']) {
-            typ = wh['type']['wh'];
+            typ = wh['type']['_id'];
+            // TODO: add more details to ui such as lifetime, destClass, type
           }
         }
 
