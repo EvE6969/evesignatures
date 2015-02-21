@@ -1,4 +1,4 @@
-import logging, json, datetime
+import logging, json, datetime, re
 from igbtoolbox import evecommon, universe, pages
 from messagebus.messaging_sockjs import MessageBusConnection
 from authn_simple import access
@@ -13,6 +13,7 @@ URI_SYSTEM_AUTOCOMPLETE = '/api/autocomplete/whsystem'
 _DEFAULT_EXPIRE_DAYS = 1
 _WH_EXPIRES_NEG_TOLERANCE = 0 #60*3
 _WH_DEFAULT_EXPIRE_HOURS = 24 - _WH_EXPIRES_NEG_TOLERANCE / 60
+_RE_WH_SYSTEM = re.compile('^J[0-9]+$')
 
 class SignaturesAjax(evecommon.AbstractPage):
 
@@ -189,14 +190,20 @@ class SignaturesAjax(evecommon.AbstractPage):
 
             sig['expires'] = sig['createdAt'] + datetime.timedelta(days=_DEFAULT_EXPIRE_DAYS) - datetime.timedelta(minutes=_WH_EXPIRES_NEG_TOLERANCE)
 
-            if obj.get('system'):
+            system = obj.get('system')
+            if system:
+                m = _RE_WH_SYSTEM.search(system)
+                isWh = m != None
                 res = yield self._eve_db.WormholeSystem.find_one({'_id': obj['system']})
                 if res:
                     wh['whSystem'] = res
-                else:
+                elif not isWh:
                     ks = {'_id': obj['system'], 'region': universe.getRegionBySystemName(obj['system']),
                           'sec': universe.getSystemSecById(universe.getSystemIdByName(obj['system'])) }
                     wh['ksSystem'] = ks
+                else:
+                    logging.warning("Could not find wormhole system in database: %s" % system)
+                    wh['whSystem'] = {'_id': system}
 
             if obj.get('type'):
                 whtype = universe.getWormholeByType(obj.get('type'))
