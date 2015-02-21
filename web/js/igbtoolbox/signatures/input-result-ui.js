@@ -26,7 +26,7 @@ define(
         var system = _.find(d.systems, function(s) {
           return s.systemId == systemId;
         });
-        if(system.signatures) {
+        if(system && system.signatures) {
           React.renderComponent(inputResultReact({signatures: system.signatures, lastEnteredSignatures: this._lastParsedSignatures}), this.node);
         }
       },
