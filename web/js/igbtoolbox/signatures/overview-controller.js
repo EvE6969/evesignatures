@@ -236,7 +236,8 @@ define(
       },
 
       _sortSignatures: function(s) {
-        return _.sortBy(s, function(a, b) {
+        if(!s) return;
+        s.sort(function(a, b) {
           var r = b.sortPrimary - a.sortPrimary;
           if(r === 0) {
             return b.sortSecondary - a.sortSecondary;
@@ -244,6 +245,7 @@ define(
             return r;
           }
         });
+        return s;
       },
 
       _onWhEditDialogRequested: function(e, d) {
