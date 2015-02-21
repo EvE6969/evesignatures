@@ -41,7 +41,7 @@ define(
         $(this.attr.sigWhEditDialogSelector).modal({keyboard: true}).on('hidden.bs.modal', this._close.bind(this));
 
 
-        this.withSystems(this._onSystemsLoaded);
+        this.withSystems(this._onSystemsLoaded, true);
         this.withTable("invTypes", this._onInvTypesLoaded);
 
       },
