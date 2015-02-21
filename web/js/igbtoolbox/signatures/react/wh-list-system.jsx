@@ -39,6 +39,7 @@ define(
           } else if(s.wormhole && s.wormhole.whSystem) {
             memo.push(" → " + s.wormhole.whSystem._id + " (Class " + s.wormhole.whSystem.class + ")");
           }
+          return memo;
 
         }, stats);
         var sstats = stats.join(",");
