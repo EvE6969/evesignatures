@@ -71,6 +71,7 @@ text-align: left;
 }
 
 .eve_signature_add_howitworks {
+	display: none;
 	margin-top: 3em;
 }
 
@@ -90,10 +91,6 @@ text-align: left;
 		.eve_signatures_add_cnt_input .eve_signature_add_input_txt {
 			width: 15em;
 			height: 5em;
-		}
-
-		.eve_signature_add_howitworks, .eve_signature_add_input_bottom {
-			display: none;
 		}
 
 		.eve_signatures_add_cnt_input {
@@ -121,7 +118,7 @@ text-align: left;
 		}
 
 		.eve_signature_add_howitworks, .eve_signature_add_input_bottom {
-			display: initial;
+			display: block;
 		}
 
 		.eve_signatures_add_cnt_input {
@@ -134,6 +131,7 @@ text-align: left;
 
 .eve_signature_add_input_bottom .eve_signature_add_input_clearinput_btn {
 	float: right;
+	display: none;
 }
 
 .eve_signatures_add_title {
@@ -235,40 +233,80 @@ display: inline-block;
 	background: #c96;
 }
 
+.eve_signatures_overview_details_type_anomaly {
+	color: #da7;
+}
+
 .label-complex {
 	background: #f33;
+}
+
+.eve_signatures_overview_details_type_complex {
+	color: #f44;
 }
 
 .label-unknown {
 	background: #666;
 }
 
+.eve_signatures_overview_details_type_unknown {
+	color: #777;
+}
+
 .label-wh {
 	background: #c6f;
+}
+
+.eve_signatures_overview_details_type_wormhole {
+	color: #d7f;
 }
 
 .label-gravimetric {
 	background: #f69;
 }
 
+.eve_signatures_overview_details_type_gravimetric {
+	color: #f7a;
+}
+
 .label-ladar {
 	background: #c93;
+}
+
+.eve_signatures_overview_details_type_ladar {
+	color: #da4;
 }
 
 .label-radar {
 	background: #993;
 }
 
+.eve_signatures_overview_details_type_radar {
+	color: #aa4;
+}
+
 .label-magnetometric {
 	background: #399;
+}
+
+.eve_signatures_overview_details_type_magnetometric {
+	color: #4aa;
 }
 
 .label-ore {
 	background: #c39;
 }
 
+.eve_signatures_overview_details_type_ore {
+	color: #d4a;
+}
+
 .label-clear {
 	background: #393;
+}
+
+.eve_signatures_overview_details_type_clear {
+	color: #4a4;
 }
 
 .eve_signatures_overview_details_cnt table {
