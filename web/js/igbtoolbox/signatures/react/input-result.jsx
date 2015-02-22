@@ -11,7 +11,8 @@ define(
   function(React, _, inputResultEntry) {
     'use strict';
 
-    return React.createClass({displayName: 'SignatureInputResults',
+    return React.createClass({
+      mixins: [React.addons.PureRenderMixin],
       render: function() {
         var sigs = this.props.signatures;
 

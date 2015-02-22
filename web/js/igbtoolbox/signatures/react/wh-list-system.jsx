@@ -13,7 +13,8 @@ define(
     'use strict';
 
 
-    return React.createClass({displayName: 'SignatureWormholeListSystem',
+    return React.createClass({
+      mixins: [React.addons.PureRenderMixin],
       render: function() {
         var whSystem = this.props.system;
         var systemId = whSystem.systemId;

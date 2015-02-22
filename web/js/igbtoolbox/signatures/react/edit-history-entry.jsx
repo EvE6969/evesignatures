@@ -10,6 +10,7 @@ define(
     'use strict';
 
     return React.createClass({
+      mixins: [React.addons.PureRenderMixin],
       render: function() {
         var entry = this.props.entry;
 

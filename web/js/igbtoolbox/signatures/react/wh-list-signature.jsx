@@ -10,7 +10,8 @@ define(
     'use strict';
 
 
-    return React.createClass({displayName: 'SignatureWormholeListSignature',
+    return React.createClass({
+      mixins: [React.addons.PureRenderMixin],
       render: function() {
         var sig = this.props.signature;
         var wh = sig.wormhole;

@@ -12,6 +12,7 @@ define(
 
 
     return React.createClass({
+      mixins: [React.addons.PureRenderMixin],
       render: function() {
         var sig = this.props.signature;
 

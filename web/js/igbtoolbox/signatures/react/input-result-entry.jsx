@@ -11,7 +11,8 @@ define(
     'use strict';
 
 
-    return React.createClass({displayName: 'SignatureInputResultEntry',
+    return React.createClass({
+      mixins: [React.addons.PureRenderMixin],
       render: function() {
         var sig = this.props.signature;
 
@@ -45,7 +46,8 @@ define(
       },
 
       componentWillReceiveProps: function(nextProps) {
-        nextProps.isRefined = nextProps.signature.type != this.props.signature.type;
+        // highlight result on refined result
+        nextProps.isRefined = nextProps.signature.type != this.props.signature.type || nextProps.signature.group != this.props.signature.group;
       },
 
       componentDidMount: function() {
