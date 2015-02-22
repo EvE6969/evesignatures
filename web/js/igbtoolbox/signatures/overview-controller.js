@@ -240,10 +240,12 @@ define(
         s.sort(function(a, b) {
           var r = b.sortPrimary - a.sortPrimary;
           if(r === 0) {
-            return b.sortSecondary - a.sortSecondary;
-          } else {
-            return r;
+            r = b.sortSecondary - a.sortSecondary;
           }
+          if(r === 0) {
+            r = a.signature > b.signature;
+          }
+          return r;
         });
         return s;
       },
