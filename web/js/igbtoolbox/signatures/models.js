@@ -180,7 +180,7 @@ define(
 
 				// ore belts
 				var re = /Belt$/;
-				if(this.type && re.test(this.type)) {
+				if(this.group == 'Ore Site' || this.type && re.test(this.type)) {
 					this.classification = 'ore';
 					this.sortPrimary = 1;
 					this.sortSecondary = 0;
