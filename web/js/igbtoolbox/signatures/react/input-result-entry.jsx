@@ -31,7 +31,7 @@ define(
           hcls = 'eve_signatures_add_list_inresult';
         }
         if(this.props.isRefined) {
-          hcls = hcls + " eve_signatures_add_list_refined";
+          hcls = 'eve_signatures_add_list_refined';
         }
 
         return (
@@ -51,19 +51,37 @@ define(
       },
 
       componentDidMount: function() {
-        // create tooltip component for created details elements
-        var html = this.props.signature.detailsHtmlBlock;
-        if(html) {
-          this._tooltipDetails = $($(this.getDOMNode()).find('.eve_signatures_add_list_details')[0]);
-          this._tooltipDetails.tooltip({
-            title:html, html: true, delay: {show: 0, hide: 750}, placement: 'right'
-          });
-        }
+        this._createTooltip();
       },
 
       componentWillUnmount: function() {
+        this._removeTooltip();
+      },
+
+      componentDidUpdate: function() {
+        this._createTooltip();
+      },
+
+      _createTooltip: function() {
+        // create tooltip component for created details elements
+        var html = this.props.signature.detailsHtmlBlock;
+        if(html) {
+          var n = $(this.getDOMNode()).find('.eve_signatures_add_list_details');
+          if(n && n.length > 0) {
+            this._tooltipDetails = $(n[0]);
+            this._tooltipDetails.tooltip({
+              title:html, html: true, delay: {show: 0, hide: 750}, placement: 'right'
+            });
+          }
+        } else {
+          this._removeTooltip();
+        }
+      },
+
+      _removeTooltip: function() {
         if(this._tooltipDetails) {
           this._tooltipDetails.tooltip('destroy');
+          this._tooltipDetails = null;
         }
       },
 
