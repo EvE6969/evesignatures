@@ -27,13 +27,13 @@
     "jquery": "~1.11.0",
     "react": "~0.12.2",
     "underscore": "~1.6.0",
-    "eveflightjs": "git://github.com/igbtoolbox/eveflightjs.git",
-    "eveportal": "git://github.com/igbtoolbox/eveportal.git",
-    "eveauthnsimple": "git://github.com/igbtoolbox/eveauthnsimple.git",
-    "eveautocomplete": "git://github.com/igbtoolbox/eveautocomplete.git",
-    "evespatial": "git://github.com/igbtoolbox/evespatial.git",
-    "evexmlapi": "git://github.com/igbtoolbox/evexmlapi.git",
-    "evemessagebus": "git://github.com/igbtoolbox/evemessagebus.git",
-    "evesde": "git://github.com/igbtoolbox/evesde.git"
+    "eveflightjs": "git://github.com/igbtoolbox/eveflightjs.git#~0.0.1",
+    "eveportal": "git://github.com/igbtoolbox/eveportal.git#~0.0.1",
+    "eveauthnsimple": "git://github.com/igbtoolbox/eveauthnsimple.git#~0.0.1",
+    "eveautocomplete": "git://github.com/igbtoolbox/eveautocomplete.git#~0.0.1",
+    "evespatial": "git://github.com/igbtoolbox/evespatial.git#~0.0.1",
+    "evexmlapi": "git://github.com/igbtoolbox/evexmlapi.git#~0.0.1",
+    "evemessagebus": "git://github.com/igbtoolbox/evemessagebus.git#~0.0.1",
+    "evesde": "git://github.com/igbtoolbox/evesde.git#~0.0.1"
   }
 }
