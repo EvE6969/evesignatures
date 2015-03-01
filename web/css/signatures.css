@@ -241,7 +241,8 @@ display: inline-block;
 	background: #f33;
 }
 
-.eve_signatures_overview_details_type_complex {
+.eve_signatures_overview_details_type_dedcomplex,
+.eve_signatures_overview_details_type_unratedcomplex {
 	color: #f44;
 }
 
