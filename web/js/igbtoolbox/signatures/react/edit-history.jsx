@@ -3,7 +3,7 @@
 define(
   "igbtoolbox/signatures/react/edit-history",
   [
-  "react",
+  "react/addons",
   "igbtoolbox/signatures/react/edit-history-entry"
   ],
 

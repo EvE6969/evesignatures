@@ -1,9 +1,6 @@
 {
   "name": "evesignatures",
   "version": "0.0.0",
-  "authors": [
-    "Stefan Podkowinski <github@midnightdrift.com>"
-  ],
   "description": "Signature scanning colaboration tool for IGB toolbox",
   "moduleType": [
     "amd", "igbtoolbox"
@@ -25,7 +22,6 @@
   "dependencies": {
     "momentjs": "~2.9.0",
     "jquery": "~1.11.0",
-    "react": "~0.12.2",
     "underscore": "~1.6.0",
     "eveflightjs": "git://github.com/igbtoolbox/eveflightjs.git#~0.0.1",
     "eveportal": "git://github.com/igbtoolbox/eveportal.git#~0.0.1",
