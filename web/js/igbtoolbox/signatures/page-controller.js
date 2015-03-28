@@ -29,7 +29,7 @@ define(
 
         this._isActivated = false;
 
-        this.trigger(navEvents.NEED_NAV_ITEM, new navEvents.NavItem("Signatures", this.attr.sigActivatedEventId));
+        this.trigger(navEvents.NEED_NAV_ITEM, new navEvents.NavItem("Signatures", this.attr.sigActivatedEventId, 80));
 
         this.on(document, navEvents.NAV_ITEM_ACTIVATED, this._activated);
 
@@ -49,13 +49,18 @@ define(
           return;
         }
 
+        // XXX: its seems like we need to reference require here to make it available in the
+        // minified webpack build or it will be undefined for require.ensure() - very strange!
+        require;
+
         // define chunk for webpack so we can lazy load signature tool js code
         require.ensure([
           "igbtoolbox/signatures/events",
           "igbtoolbox/signatures/overview-controller",
           "igbtoolbox/signatures/input-controller",
           "igbtoolbox/signatures/wh-list-ui",
-          "signatures.css"], (function(require) {
+          "signatures.css"
+          ], (function(require) {
 
           // update badge with wormhole count on tab
           var sigEvents = require("igbtoolbox/signatures/events");
