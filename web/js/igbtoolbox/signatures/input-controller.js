@@ -61,6 +61,10 @@ define(
 
       _saveSignatures: function(e, d) {
 
+        if(!d.signatures || d.signatures.length == 0) {
+          return;
+        }
+        
         var l = [];
         for(var j = 0; j < d.signatures.length; j++) {
           l.push(d.signatures[j].toJson());

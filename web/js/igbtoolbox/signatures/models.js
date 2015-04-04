@@ -1012,11 +1012,7 @@ define(
 		* @return {string}
 		*/
 		function searchStripString(s) {
-			var k = s.replace(' ', '', 'g');
-			k = k.replace('.', '', 'g');
-			k = k.replace("'", '', 'g');
-			k = k.replace('-', '', 'g');
-			return k;
+			return s.replace(/[\s.'-]/g, '');
 		}
 
 	}
