@@ -57,34 +57,34 @@ define(
 
           // signature stats
           if(system.anomalies > 0) {
-            anomalies = <span className="eve_signatures_overview_list_anomaly label label-anomaly" >{system.anomalies} Anomalies</span>
+            anomalies = <span className="eve_signatures_overview_list_anomaly label label-condensed label-anomaly" >{system.anomalies} Anomalies</span>
           }
           if(system.complexes > 0) {
-            complexes = <span className="eve_signatures_overview_list_complex label label-complex">{system.complexes} Complexes</span>
+            complexes = <span className="eve_signatures_overview_list_complex label label-condensed label-complex">{system.complexes} Complexes</span>
           }
           if(system.wormholes > 0) {
-            wormholes = <span className="eve_signatures_overview_list_wormholes label label-wh" >{system.wormholes} Wormholes</span>
+            wormholes = <span className="eve_signatures_overview_list_wormholes label label-condensed label-wh" >{system.wormholes} Wormholes</span>
           }
           if(system.gravimetric > 0) {
-            gravimetric = <span className="eve_signatures_overview_list_gravimetric label label-gravimetric" >{system.gravimetric} Gravimetric</span>
+            gravimetric = <span className="eve_signatures_overview_list_gravimetric label label-condensed label-gravimetric" >{system.gravimetric} Gravimetric</span>
           }
           if(system.ladar > 0) {
-            ladar = <span className="eve_signatures_overview_list_ladar label label-ladar" >{system.ladar} Ladar</span>
+            ladar = <span className="eve_signatures_overview_list_ladar label label-condensed label-ladar" >{system.ladar} Ladar</span>
           }
           if(system.radar > 0) {
-            radar = <span className="eve_signatures_overview_list_radar label label-radar" >{system.radar} Radar</span>
+            radar = <span className="eve_signatures_overview_list_radar label label-condensed label-radar" >{system.radar} Radar</span>
           }
           if(system.magnetometric > 0) {
-            magnetometric = <span className="eve_signatures_overview_list_magnetometric label label-magnetometric" >{system.magnetometric} Magnetometric</span>
+            magnetometric = <span className="eve_signatures_overview_list_magnetometric label label-condensed label-magnetometric" >{system.magnetometric} Magnetometric</span>
           }
           if(system.ore > 0) {
-            ore = <span className="eve_signatures_overview_list_ore label label-ore" >{system.ore} Ore</span>
+            ore = <span className="eve_signatures_overview_list_ore label label-condensed label-ore" >{system.ore} Ore</span>
           }
           if(system.unknown > 0) {
-            unknown = <span className="eve_signatures_overview_list_unknown label label-unknown" >{system.unknown} Unknown</span>
+            unknown = <span className="eve_signatures_overview_list_unknown label label-condensed label-unknown" >{system.unknown} Unknown</span>
           }
           if(system.isSystemClear) {
-            clear = <span className="eve_signatures_overview_list_clear label label-clear" >Clear</span>
+            clear = <span className="eve_signatures_overview_list_clear label label-condensed label-clear" >Clear</span>
           }
 
           // create signature list entries

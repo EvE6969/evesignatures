@@ -172,6 +172,10 @@ text-align: left;
 	white-space: nowrap;
 }
 
+.eve_signature_overview_list_entry:nth-child(odd) {
+	background: #222;
+}
+
 .eve_signature_overview_list_entry img,
 .eve_signature_overview_list_entry .eve_expand_spacer,
 .eve_signature_overview_list_entry .eve_signatures_overview_expand  {
@@ -274,7 +278,8 @@ display: inline-block;
 	background: #c93;
 }
 
-.eve_signatures_overview_details_type_ladar {
+.eve_signatures_overview_details_type_ladar,
+.eve_signatures_overview_details_type_ladarnebula {
 	color: #da4;
 }
 
@@ -306,12 +311,17 @@ display: inline-block;
 	background: #393;
 }
 
+.label-condensed {
+	padding: .1em .6em .1em;
+}
+
 .eve_signatures_overview_details_type_clear {
 	color: #4a4;
 }
 
 .eve_signatures_overview_details_cnt table {
 	margin: .5em;
+	background: initial;
 }
 
 .eve_signatures_overview_details_cnt table tr td {
@@ -341,6 +351,8 @@ display: inline-block;
 
 .eve_signatures_overview_list_time .eve_timestamp {
 	padding-left: .5em;
+	min-width: 8em;
+	display: inline-block;
 }
 
 .eve_signature_overview_input_top {
@@ -415,36 +427,36 @@ a.eve_signatures_overview_details_show {
 
 
 #m_signatures_whlist {
-overflow: auto;
+	overflow: auto;
 }
 
 .eve_signatures_whlist_entry {
-padding: .25em .25em 0 .25em;
+	padding: .25em .25em 0 .25em;
 }
 
 .eve_signatures_whlist_entry .eve_signatures_overview_list_destinations {
-padding-left: .5em;
+	padding-left: .5em;
 }
 
 .eve_signatures_whlist_details {
-padding: .5em;
+	padding: .5em;
 }
 
 .eve_signatures_whlist_details_entry .eve_signatures_whlist_entry_whsystem_head,
 .eve_signatures_whlist_details_entry .eve_createdby {
-display: inline-block;
-margin-left: 1em;
+	display: inline-block;
+	margin-left: 1em;
 }
 
 .eve_signatures_whlist_details_entry .eve_timestamp {
-display: inline-block;
-margin-left: .5em;
+	display: inline-block;
+	margin-left: .5em;
 }
 
 .eve_signatures_whlist_details_entry .eve_signatures_whlist_entry_details_head,
 .eve_signatures_whlist_details_entry .eve_signatures_whlist_entry_comment_head {
-display: block;
-margin: 1em;
+	display: block;
+	margin: 1em;
 	background: #333;
 	padding: 1em;
 	white-space: pre-wrap
@@ -480,6 +492,6 @@ margin: 1em;
 	padding: .25em .5em .25em .5em;
 }
 
-.eve_signatures_whlist_entry:nth-child(even) {
+.eve_signatures_whlist_entry:nth-child(odd) {
 	background: #222;
 }
