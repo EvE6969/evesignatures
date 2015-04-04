@@ -544,12 +544,13 @@ define(
 					continue;
 				}
 				var faction = m[1];
+				var normalizedType = this.type.replace(m[0], faction);
 
 				var ckt = _.keys(models.UNRATED_COMPLEX_LEVELS);
 				for(var i = 0; i < ckt.length; i++) {
 					var c = ckt[i].replace('\(Faction\)', faction);
 					c = searchStripString(c);
-					var t = searchStripString(this.type);
+					var t = searchStripString(normalizedType);
 					if(util.caseInsensitiveCompare(c, t) === 0) {
 						return models.UNRATED_COMPLEX_LEVELS[ckt[i]];
 					}
@@ -588,8 +589,10 @@ define(
 			for(var i = 0; i < cks.length; i++) {
 				var m = new RegExp(cks[i]).exec(this.type);
 				var faction = null;
+				var normalizedType = this.type;
 				if(m) {
 					faction = m[1];
+					normalizedType = this.type.replace(m[0], faction);
 				}
 
 				var ckl = _.keys(models.RADAR_LEVELS);
@@ -599,7 +602,7 @@ define(
 						c = c.replace('\(Faction\)', faction);
 					}
 					c = searchStripString(c);
-					var t = searchStripString(this.type);
+					var t = searchStripString(normalizedType);
 					if(util.caseInsensitiveCompare(c, t) === 0) {
 						return models.RADAR_LEVELS[ckl[j]];
 					}
@@ -618,12 +621,13 @@ define(
 					continue;
 				}
 				var faction = m[1];
+				var normalizedType = this.type.replace(m[0], faction);
 
 				var ckt = _.keys(models.MAGNETOMETRIC_LEVELS);
 				for(var i = 0; i < ckt.length; i++) {
 					var c = ckt[i].replace('\(Faction\)', faction);
 					c = searchStripString(c);
-					var t = searchStripString(this.type);
+					var t = searchStripString(normalizedType);
 					if(util.caseInsensitiveCompare(c, t) === 0) {
 						return models.MAGNETOMETRIC_LEVELS[ckt[i]];
 					}
