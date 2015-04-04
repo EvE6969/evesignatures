@@ -49,10 +49,6 @@ define(
           return;
         }
 
-        // XXX: its seems like we need to reference require here to make it available in the
-        // minified webpack build or it will be undefined for require.ensure() - very strange!
-        require;
-
         // define chunk for webpack so we can lazy load signature tool js code
         require.ensure([
           "igbtoolbox/signatures/events",
