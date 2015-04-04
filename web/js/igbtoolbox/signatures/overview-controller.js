@@ -118,10 +118,10 @@ define(
         this.logDebug('Received ' + sigs.length + ' signatures');
 
         // get instances from objects
-        sigs = _.map(sigs, sigModels.Signature.fromJson);
+        sigs = sigs.map(sigModels.Signature.fromJson);
 
         // group by system
-        var sigsBySystem = _.reduce(sigs, function(prev, cur) {
+        var sigsBySystem = sigs.reduce((prev, cur) => {
           if(prev[cur.system] === undefined) {
             prev[cur.system] = [];
           }
@@ -130,7 +130,7 @@ define(
         }, {});
 
         // save most recent result date by system
-        var lastResultDatesBySystem = _.reduce(sigs, function(prev, cur) {
+        var lastResultDatesBySystem = sigs.reduce((prev, cur) => {
           if(prev[cur.system] === undefined || prev[cur.system] < cur.lastUpdatedTime) {
             prev[cur.system] = cur.lastUpdatedTime;
           }
@@ -141,7 +141,7 @@ define(
         var systems = res['systems'];
 
         // create list of view model entries
-        var systemsAndDistances = _.map(systems, function(s) {
+        var systemsAndDistances = systems.map(s => {
           var lastResultDate = lastResultDatesBySystem[s['systemName']];
           var signatures = sigsBySystem[s['systemName']];
 
@@ -151,7 +151,7 @@ define(
           return new sigModels.SignatureOverviewViewModelSystemEntry(s['systemId'], s['systemName'], s['sec'],
             lastResultDate, signatures);
 
-        }, this);
+        });
 
 
         // sort systems by distances
@@ -168,7 +168,7 @@ define(
         this.trigger(sigEvents.SYSTEMS_UPDATED, ev);
 
         // extract simple list of signatures
-        var sigs = _.flatten(_.map(this._systemsAndSignatures, function(s) { return s.signatures; }));
+        var sigs = _.flatten(this._systemsAndSignatures.map(s => s.signatures ));
         var ek = new sigEvents.SignaturesModelUpdate(sigs);
         this.trigger(sigEvents.SIGNATURES_UPDATED, ek);
       },
@@ -197,12 +197,10 @@ define(
 
           this.logDebug('Removing deleted signature ' + signature + ' in ' + systemId + ' from view');
 
-          _.each(this._systemsAndSignatures, function(s) {
+          this._systemsAndSignatures.forEach(s => {
             // remove deleted signature in effected system
             if(s.systemId == systemId) {
-              s.signatures = _.filter(s.signatures, function(t) {
-                return t.signature != signature;
-              });
+              s.signatures = s.signatures.filter(t => t.signature != signature);
               s.lastResultDate = new Date().getTime();
               s.update();
             }
@@ -213,14 +211,14 @@ define(
         } else if(e.eventType == 'signature_saved' || e.eventType == 'signature_whdetails_saved') {
 
           var sig = sigModels.Signature.fromJson(e.data);
-          _.each(this._systemsAndSignatures, function(s) {
+          this._systemsAndSignatures.forEach(s => {
             if(s.systemId == sig.systemId) {
               if(s.signatures !== undefined) {
                 // remove existing signature in effected system if found and add it again
                 // also remove all previous signatures if the updated signature is a tombstone
-                s.signatures = _.filter(s.signatures, function(t) {
-                  return t.signature != sig.signature && (sig.signature != 'XXX' || t.lastUpdated.getTime() > sig.lastUpdated.getTime()) && t.signature != 'XXX';
-                });
+                s.signatures = s.signatures.filter(t =>
+                  t.signature != sig.signature && (sig.signature != 'XXX' || t.lastUpdated.getTime() > sig.lastUpdated.getTime()) && t.signature != 'XXX'
+                );
               } else {
                 s.signatures = [];
               }
@@ -237,7 +235,7 @@ define(
 
       _sortSignatures: function(s) {
         if(!s) return;
-        s.sort(function(a, b) {
+        s.sort((a, b) => {
           var r = b.sortPrimary - a.sortPrimary;
           if(r === 0) {
             r = b.sortSecondary - a.sortSecondary;
