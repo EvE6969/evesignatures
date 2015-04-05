@@ -492,6 +492,6 @@ a.eve_signatures_overview_details_show {
 	padding: .25em .5em .25em .5em;
 }
 
-.eve_signatures_whlist_entry:nth-child(odd) {
+.eve_signatures_whlist_entry:nth-child(even) {
 	background: #222;
 }
