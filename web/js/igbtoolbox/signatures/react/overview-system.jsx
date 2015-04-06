@@ -116,7 +116,6 @@ define(
               <span className="sc_normal eve_stats eve_stats_factionkills" data-system={systemId} title="NPCs killed last hour">0</span>
               {systemNoData}
               {systemProbedDate}
-              {anomalies}
               {complexes}
               {wormholes}
               {ore}
@@ -124,6 +123,7 @@ define(
               {ladar}
               {radar}
               {magnetometric}
+              {anomalies}
               {unknown}
               {clear}
             </div>
