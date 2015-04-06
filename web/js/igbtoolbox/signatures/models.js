@@ -193,95 +193,109 @@ define(
 
 			} else if(this.scanGroup == 'Cosmic Signature') {
 
-				var lv = this.getUnratedComplexDifficulty();
-				if(lv) {
-					this.classification = 'unratedcomplex';
-					this.sortPrimary = 10;
-					this.sortSecondary = 20-lv;
-				}
 
-				if(this.classification == 'unknown') {
+				if(!_.isEmpty(this.type)) {
+
+					// unrated complex
+					var lv = this.getUnratedComplexDifficulty();
+					if(lv) {
+						this.classification = 'unratedcomplex';
+						this.sortPrimary = 10;
+						this.sortSecondary = 20-lv;
+						return;
+					}
+
+					// ded rated complex
 					lv = this.getDedComplexDifficulty();
 					if(lv) {
 						this.classification = 'dedcomplex';
 						this.sortPrimary = 9;
 						this.sortSecondary = lv;
+						return;
 					}
-				}
-				if(this.classification == 'unknown') {
 
-					if(_.isEmpty(this.type)) {
-						if(this.group == 'Gravimetric') {
+					// gravimetrics
+					var cks = _.keys(models.GRAVIMETRIC);
+					for(var i = 0; i < cks.length; i++) {
+						var m = new RegExp(cks[i]).exec(this.type);
+						if(m) {
 							this.classification = 'gravimetric';
 							this.sortPrimary = 3;
 							this.sortSecondary = 0;
+							return;
 						}
+					}
+
+					// ladar
+					var t = searchStripString(this.type);
+					var k1 = searchStripString("Nebula");
+					var k2 = searchStripString("Reservoir");
+					if(util.caseInsensitiveEndsWith(t, k1) || util.caseInsensitiveEndsWith(t, k2)) {
+						this.classification = 'ladarnebula';
+						this.sortPrimary = 5;
+						this.sortSecondary = 0;
+						return;
 					} else {
-						var cks = _.keys(models.GRAVIMETRIC);
-						for(var i = 0; i < cks.length; i++) {
-							var m = new RegExp(cks[i]).exec(this.type);
-							if(m) {
-								this.classification = 'gravimetric';
-								this.sortPrimary = 3;
-								this.sortSecondary = 0;
-							}
-						}
-					}
-				}
+						var l1 = searchStripString("Chemical Lab");
+						var l2 = searchStripString("Gas Processing Site");
+						var l3 = searchStripString("Distribution Base");
+						var l4 = searchStripString("Production Facility");
 
-				if(this.classification == 'unknown') {
-
-					lv = this.getRadarDifficulty();
-					if(lv || this.group == 'Data Site') {
-						this.classification = 'radar';
-						this.sortPrimary = 7;
-						this.sortSecondary = 10-lv;
-					}
-				}
-
-				if(this.classification == 'unknown') {
-
-					lv = this.getMagnetometricDifficulty();
-					if(lv || this.group == 'Relic Site') {
-						this.classification = 'magnetometric';
-						this.sortPrimary = 6;
-						this.sortSecondary = 10-lv;
-					}
-				}
-
-				if(this.classification == 'unknown') {
-
-					if(_.isEmpty(this.type)) {
-						if(this.group == 'Gas Site') {
-							this.classification = 'ladar';
-							this.sortPrimary = 3;
-							this.sortSecondary = 0;
-						}
-					} else {
-						var t = searchStripString(this.type);
-						var k1 = searchStripString("Nebula");
-						var k2 = searchStripString("Reservoir");
-						if(util.caseInsensitiveEndsWith(t, k1) || util.caseInsensitiveEndsWith(t, k2)) {
-							this.classification = 'ladarnebula';
+						if(util.caseInsensitiveEndsWith(t, l1) || util.caseInsensitiveEndsWith(t, l2)
+								|| util.caseInsensitiveEndsWith(t, l3) || util.caseInsensitiveEndsWith(t, l4)) {
+							this.classification = 'ladarfacility';
 							this.sortPrimary = 5;
-							this.sortSecondary = 0;
-						} else {
-							var l1 = searchStripString("Chemical Lab");
-							var l2 = searchStripString("Gas Processing Site");
-							var l3 = searchStripString("Distribution Base");
-							var l4 = searchStripString("Production Facility");
-
-							if(util.caseInsensitiveEndsWith(t, l1) || util.caseInsensitiveEndsWith(t, l2)
-									|| util.caseInsensitiveEndsWith(t, l3) || util.caseInsensitiveEndsWith(t, l4)) {
-								this.classification = 'ladarfacility';
-								this.sortPrimary = 5;
-								this.sortSecondary = 1;
-							}
+							this.sortSecondary = 1;
+							return;
 						}
+					}
+
+				} else { // empty type
+
+					// unknown combat site
+					if(this.group == 'Combat Site') {
+						this.classification = 'unratedcomplex';
+						this.sortPrimary = 10;
+						this.sortSecondary = 20;
+						return;
+					}
+
+					// gravimetric
+					if(this.group == 'Gravimetric') {
+						this.classification = 'gravimetric';
+						this.sortPrimary = 3;
+						this.sortSecondary = 0;
+						return;
+					}
+
+					// ladar
+					if(this.group == 'Gas Site') {
+						this.classification = 'ladar';
+						this.sortPrimary = 3;
+						this.sortSecondary = 0;
+						return;
 					}
 				}
 
-			}
+				// radar
+				lv = this.getRadarDifficulty();
+				if(lv || this.group == 'Data Site') {
+					this.classification = 'radar';
+					this.sortPrimary = 7;
+					this.sortSecondary = 10-lv;
+					return;
+				}
+
+				// magnetometric
+				lv = this.getMagnetometricDifficulty();
+				if(lv || this.group == 'Relic Site') {
+					this.classification = 'magnetometric';
+					this.sortPrimary = 6;
+					this.sortSecondary = 10-lv;
+					return;
+				}
+
+			} // scanGroup == 'Cosmic Signature'
 		};
 
 
@@ -413,35 +427,17 @@ define(
 				return ret;
 
 			} else if(this.classification == 'unratedcomplex') {
-
-				var ret = "Sig. Strength: " + this.getUnratedComplexDifficulty() +"% (1.25-20%)";
-				return ret;
-
+				return "Sig. Strength: " + this.getUnratedComplexDifficulty() +"% (1.25-20%)";
 			} else if(this.classification == 'gravimetric') {
-
-				var ret = "";
-				return ret;
-
+				return "";
 			} else if(this.classification == 'ladarnebula') {
-
-				var ret = "Ladar Nebula (Gas Harvester)";
-				return ret;
-
+				return "Ladar Nebula (Gas Harvester)";
 			} else if(this.classification == 'ladarfacility') {
-
-				var ret = "Ladar Drug Facility (Code Breaker)";
-				return ret;
-
+				return "Ladar Drug Facility (Code Breaker)";
 			} else if(this.classification == 'radar') {
-
-				var ret = "Sig. Strength: " + this.getRadarDifficulty() +"% (1.25-10%)";
-				return ret;
-
+				return "Sig. Strength: " + this.getRadarDifficulty() +"% (1.25-10%)";
 			} else if(this.classification == 'magnetometric') {
-
-				var ret = "Sig. Strength: " + this.getMagnetometricDifficulty() +"% (1.25-10%)";
-				return ret;
-
+				return "Sig. Strength: " + this.getMagnetometricDifficulty() +"% (1.25-10%)";
 			} else if(this.classification == 'wormhole') {
 
 				if(!this.wormhole) {
@@ -454,7 +450,6 @@ define(
 					} else if(this.wormhole['ksSystem']) {
 						var ld = this.wormhole['ksSystem']['_id'] + " (" + this.wormhole['ksSystem']['sec'] + ") in " + this.wormhole['ksSystem']['region'];
 					}
-
 					if(this.wormhole['type']) {
 						return "Type " + this.wormhole['type']['wh'] + " leading to " + ld;
 					} else {
@@ -466,6 +461,61 @@ define(
 			}
 
 		};
+
+
+		models.Signature.prototype.getComplexEscalation = function() {
+			// TODO
+			return null;
+		};
+
+		models.Signature.prototype.getDedComplexDifficulty = function() {
+			return this.__getDifficulty(models.DED_COMPLEXES, false);
+		};
+
+		models.Signature.prototype.getUnratedComplexDifficulty = function() {
+			let ret = this.__getDifficulty(models.UNRATED_COMPLEX_LEVELS);
+			if(ret == 0) {
+				ret = this.__getDifficulty(models.DRONES_COMPLEX_LEVELS);
+			}
+			return ret;
+		};
+
+		models.Signature.prototype.getRadarDifficulty = function() {
+			return this.__getDifficulty(models.RADAR_LEVELS);
+		};
+
+		models.Signature.prototype.getMagnetometricDifficulty = function() {
+			return this.__getDifficulty(models.MAGNETOMETRIC_LEVELS);
+		};
+
+		models.Signature.prototype.__getDifficulty = function(levels, parseFaction=true) {
+			if(_.isEmpty(this.type)) {
+				return 0;
+			}
+			let faction = null
+			let normalizedType = this.type;
+			if(parseFaction) {
+				for(let ck of _.keys(models.__FACTION_PATTERN)) {
+					const m = new RegExp(ck).exec(this.type);
+					if(m) {
+						faction = m[1];
+						normalizedType = this.type.replace(m[0], faction);
+						break;
+					}
+				}
+			}
+
+			for(let ck of _.keys(levels)) {
+				let c = ck;
+				if(faction) c = c.replace('\(Faction\)', faction);
+				c = searchStripString(c);
+				const t = searchStripString(normalizedType);
+				if(util.caseInsensitiveCompare(c, t) === 0) {
+					return levels[ck];
+				}
+			}
+		};
+
 
 		models.Signature.prototype._parseAnomaly = function() {
 			this._anomalyFactionPart = 'n/a';
@@ -513,128 +563,6 @@ define(
 			return ret;
 		};
 
-		models.Signature.prototype.getComplexEscalation = function() {
-			// TODO
-			return null;
-		};
-
-		models.Signature.prototype.getDedComplexDifficulty = function() {
-			if(_.isEmpty(this.type)) {
-				return 0;
-			}
-			var cks = _.keys(models.DED_COMPLEXES);
-			for(var i = 0; i < cks.length; i++) {
-				var k = searchStripString(cks[i]);
-				var t = searchStripString(this.type);
-				if(util.caseInsensitiveCompare(t, k) === 0) {
-					return models.DED_COMPLEXES[cks[i]];
-				}
-			}
-
-		};
-
-		models.Signature.prototype.getUnratedComplexDifficulty = function() {
-			if(_.isEmpty(this.type)) {
-				return 0;
-			}
-			var cks = _.keys(models.__FACTION_PATTERN);
-			for(var i = 0; i < cks.length; i++) {
-				var m = new RegExp(cks[i]).exec(this.type);
-				if(!m) {
-					continue;
-				}
-				var faction = m[1];
-				var normalizedType = this.type.replace(m[0], faction);
-
-				var ckt = _.keys(models.UNRATED_COMPLEX_LEVELS);
-				for(var i = 0; i < ckt.length; i++) {
-					var c = ckt[i].replace('\(Faction\)', faction);
-					c = searchStripString(c);
-					var t = searchStripString(normalizedType);
-					if(util.caseInsensitiveCompare(c, t) === 0) {
-						return models.UNRATED_COMPLEX_LEVELS[ckt[i]];
-					}
-				}
-			}
-
-			var cku = _.keys(models.DRONES_COMPLEX_LEVELS);
-			for(var i = 0; i < cku.length; i++) {
-				var c = cku[i];
-				c = searchStripString(c);
-				var t = searchStripString(this.type);
-				if(util.caseInsensitiveCompare(c, t) === 0) {
-					return models.DRONES_COMPLEX_LEVELS[cku[i]];
-				}
-			}
-		};
-
-		models.Signature.prototype._getAnomalyDifficultyMinorValue = function() {
-			if(this._anomalyLevelPart == 'Hidden') {
-				return 1;
-			} else if(this._anomalyLevelPart == 'Forsaken') {
-				return 2;
-			} else if(this._anomalyLevelPart == 'Forlorn') {
-				return 3;
-			} else {
-				return 0;
-			}
-		};
-
-
-		models.Signature.prototype.getRadarDifficulty = function() {
-			if(_.isEmpty(this.type)) {
-				return 0;
-			}
-			var cks = _.keys(models.__FACTION_PATTERN);
-			for(var i = 0; i < cks.length; i++) {
-				var m = new RegExp(cks[i]).exec(this.type);
-				var faction = null;
-				var normalizedType = this.type;
-				if(m) {
-					faction = m[1];
-					normalizedType = this.type.replace(m[0], faction);
-				}
-
-				var ckl = _.keys(models.RADAR_LEVELS);
-				for(var j = 0; j < ckl.length; j++) {
-					var c = ckl[j];
-					if(faction) {
-						c = c.replace('\(Faction\)', faction);
-					}
-					c = searchStripString(c);
-					var t = searchStripString(normalizedType);
-					if(util.caseInsensitiveCompare(c, t) === 0) {
-						return models.RADAR_LEVELS[ckl[j]];
-					}
-				}
-			}
-		};
-
-		models.Signature.prototype.getMagnetometricDifficulty = function() {
-			if(_.isEmpty(this.type)) {
-				return 0;
-			}
-			var cks = _.keys(models.__FACTION_PATTERN);
-			for(var i = 0; i < cks.length; i++) {
-				var m = new RegExp(cks[i]).exec(this.type);
-				if(!m) {
-					continue;
-				}
-				var faction = m[1];
-				var normalizedType = this.type.replace(m[0], faction);
-
-				var ckt = _.keys(models.MAGNETOMETRIC_LEVELS);
-				for(var i = 0; i < ckt.length; i++) {
-					var c = ckt[i].replace('\(Faction\)', faction);
-					c = searchStripString(c);
-					var t = searchStripString(normalizedType);
-					if(util.caseInsensitiveCompare(c, t) === 0) {
-						return models.MAGNETOMETRIC_LEVELS[ckt[i]];
-					}
-				}
-			}
-		};
-
 		models.Signature.prototype._getAnomalyDifficultyValue = function() {
 			var name = this._anomalyNamePart;
 			if(name == 'Hideaway' || name == 'Cluster') {
@@ -662,8 +590,20 @@ define(
 			}
 		};
 
+		models.Signature.prototype._getAnomalyDifficultyMinorValue = function() {
+			if(this._anomalyLevelPart == 'Hidden') {
+				return 1;
+			} else if(this._anomalyLevelPart == 'Forsaken') {
+				return 2;
+			} else if(this._anomalyLevelPart == 'Forlorn') {
+				return 3;
+			} else {
+				return 0;
+			}
+		};
+
 		// http://wiki.eveonline.com/en/wiki/Cosmic_Anomaly#Escalations
-		models.Signature.prototype.getAnomalyEscalation= function() {
+		models.Signature.prototype.getAnomalyEscalation = function() {
 			if(_.isEmpty(this.type)) {
 				return null;
 			}
@@ -890,13 +830,14 @@ define(
 				"Ruined (Faction) Crystal Quarry": 1.25,
 
 				// Rogue Drones
-				"Bloated Ruins": 0,
-				"Forgotten Ruins": 0,
-			 	"Ancient Ruins": 0,
-			 	"Festering Ruins": 0,
-			 	"Whispy Ruins": 0,
-			 	"Crumbling Ruins": 0,
-			 	"Hidden Ruins": 0,
+				"Bloated Ruins": 1,
+				"Forgotten Ruins": 1,
+			 	"Ancient Ruins": 1,
+			 	"Festering Ruins": 1,
+			 	"Whispy Ruins": 1,
+			 	"Crumbling Ruins": 1,
+			 	"Hidden Ruins": 1,
+				"Murky Ruins": 1,
 
 			 	// Wormhole
 			 	"Forgotten Perimeter Coronation Platform": 2.5,
