@@ -279,7 +279,8 @@ display: inline-block;
 }
 
 .eve_signatures_overview_details_type_ladar,
-.eve_signatures_overview_details_type_ladarnebula {
+.eve_signatures_overview_details_type_ladarnebula,
+.eve_signatures_overview_details_type_ladarfacility {
 	color: #da4;
 }
 
