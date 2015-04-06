@@ -514,6 +514,8 @@ define(
 					return levels[ck];
 				}
 			}
+			
+			return 0;
 		};
 
 
