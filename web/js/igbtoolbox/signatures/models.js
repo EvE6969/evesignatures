@@ -495,8 +495,9 @@ define(
 			let faction = null
 			let normalizedType = this.type;
 			if(parseFaction) {
-				for(let ck of _.keys(models.__FACTION_PATTERN)) {
-					const m = new RegExp(ck).exec(this.type);
+				const cks = _.keys(models.__FACTION_PATTERN);
+				for(let i = 0; i < cks.length; i++) {
+					const m = new RegExp(cks[i]).exec(this.type);
 					if(m) {
 						faction = m[1];
 						normalizedType = this.type.replace(m[0], faction);
@@ -505,16 +506,17 @@ define(
 				}
 			}
 
-			for(let ck of _.keys(levels)) {
-				let c = ck;
+			const cks = _.keys(levels);
+			for(let i = 0; i < cks.length; i++) {
+				let c = cks[i];
 				if(faction) c = c.replace('\(Faction\)', faction);
 				c = searchStripString(c);
 				const t = searchStripString(normalizedType);
 				if(util.caseInsensitiveCompare(c, t) === 0) {
-					return levels[ck];
+					return levels[cks[i]];
 				}
 			}
-			
+
 			return 0;
 		};
 
