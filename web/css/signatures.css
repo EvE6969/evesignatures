@@ -199,6 +199,14 @@ display: inline-block;
 	display: inline-block;
 }
 
+.eve_signature_overview_list_entry {
+	color: #999;
+}
+
+.eve_signature_overview_list_entry.eve_sov_owned {
+	color: #FFF;
+}
+
 .eve_signatures_overview_expand .eve_secstatus,
 .eve_signatures_overview_nodata .eve_secstatus,
 .eve_signatures_whlist_entry .eve_secstatus {
@@ -207,8 +215,8 @@ display: inline-block;
 	margin-right: 1em;
 }
 
-.eve_signatures_overview_expand .eve_stats,
-.eve_signatures_overview_nodata .eve_stats {
+.eve_signatures_overview_expand .eve_stats_numeric,
+.eve_signatures_overview_nodata .eve_stats_numeric {
 	width: 1.5em;
 	display: inline-block;
 	margin-right: 1em;
@@ -496,3 +504,4 @@ a.eve_signatures_overview_details_show {
 .eve_signatures_whlist_entry:nth-child(even) {
 	background: #222;
 }
+

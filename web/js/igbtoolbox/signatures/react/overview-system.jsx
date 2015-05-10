@@ -105,15 +105,15 @@ define(
 
 
         return (
-          <div className="eve_signature_overview_list_entry">
+          <div className="eve_signature_overview_list_entry eve_stats eve_stats_allianceid" data-system={systemId}>
             {spacer}
             {imgExpand}
             <div className={cssEntryBase}>
-              <span className="eve_system" data-system={systemId}>{system.system}</span>
+              <span className="eve_system">{system.system}</span>
               <span className="sc_small eve_distance eve_distance_brackets" data-system={systemId}></span>
               <span className={cssClassSec} title="Security status">{sec}</span>
               <img className="sc_normal" width="16" height="16" src="/static/signatures/im/icon75_10.png" title="NPCs killed last hour"></img>
-              <span className="sc_normal eve_stats eve_stats_factionkills" data-system={systemId} title="NPCs killed last hour">0</span>
+              <span className="sc_normal eve_stats eve_stats_numeric eve_stats_factionkills" data-system={systemId} title="NPCs killed last hour">0</span>
               {systemNoData}
               {systemProbedDate}
               {complexes}

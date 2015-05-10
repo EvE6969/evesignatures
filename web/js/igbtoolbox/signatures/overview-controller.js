@@ -10,6 +10,7 @@ define(
   "igbtoolbox/signatures/overview-ui",
   "igbtoolbox/signatures/wh-edit-dialog-ui",
   "igbtoolbox/autocomplete/autocomplete-ui",
+  "igbtoolbox/evexmlapi/stats-events",
   "igbtoolbox/sde/sde-mixin",
   "igbtoolbox/spatial/proximity-mixin",
   "igbtoolbox/igb/ping-mixin",
@@ -19,7 +20,7 @@ define(
   ],
 
   function(_, defineComponent, sigEvents, sigUtil, sigModels, historyUI, overviewUI, wormholeEditDialogUI, autocompleteUI,
-    withSDE, withProximity, withPilot, withAjax, withPushMessages, withLogging) {
+    statsEvents, withSDE, withProximity, withPilot, withAjax, withPushMessages, withLogging) {
     'use strict';
 
 
@@ -30,7 +31,8 @@ define(
         sigUri: '/api/signature',
         sigACRegionSelector: '#signature_in_acregion',
         sigOverviewUISelector: '#m_signatures_overview',
-        sigHistoryUISelector: '#m_signatures_history'
+        sigHistoryUISelector: '#m_signatures_history',
+        sigToogleShowAllSelector: '#signature_in_showall'
       },
 
       attached: function() {
@@ -60,12 +62,29 @@ define(
         // signatures overview list per region
         overviewUI.attachTo(this.attr.sigOverviewUISelector);
 
+        // toggle visibility of foreign sov systems
+        var tcb = $(this.attr.sigToogleShowAllSelector);
+        if(tcb) {
+          tcb.on('change', this._updateSovVisibility.bind(this));
+        }
+        this.on(statsEvents.SOV_STATS_UPDATED, this._updateSovVisibility);
+
         // load current region
         if(region) {
           this._updateOverview(region);
         }
 
         this.$node.show();
+      },
+
+      _updateSovVisibility: function() {
+        var els = this.$node.find(".eve_signature_overview_list_entry");
+        var showAll = $(this.attr.sigToogleShowAllSelector)[0].checked;
+        for(var i = 0; i < els.length; i++) {
+          var el = $(els[i]);
+          if(showAll || el.hasClass('eve_sov_owned')) el.show();
+          else el.hide();
+        }
       },
 
       _regionsLoaded: function(currentRegion, regionNames) {

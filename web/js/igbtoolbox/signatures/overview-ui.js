@@ -19,16 +19,22 @@ define(
 
     return defineComponent([withTimestamps, withProximity, withPilot, withStats], {
 
+      attributes: {
+        styleSovOwned: 'eve_sov_owned'
+      },
+
       attached: function() {
         this.on(document, sigEvents.SYSTEMS_UPDATED, this._renderSystems);
       },
 
       _renderSystems: function(e, d) {
-        var systemId = this.getPilot().systemId;
+        var pilot = this.getPilot();
+        var systemId = pilot.systemId;
         react.renderComponent(overviewListReact({systems:d.systems, currentSystemId: systemId}), this.node);
         this.updateTimestampDurations();
         this.updateJumpDistances();
         this.updateKillStats();
+        this.updateSovStats(pilot, this.attr.styleSovOwned);
       }
 
     });
